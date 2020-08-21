@@ -27,6 +27,14 @@ stages:
       pool:
         vmImage: $(vmImageName)
       steps:
+        - task: SonarCloudPrepare@1
+          displayName: SonarCloud Prepare
+          inputs:
+            SonarCloud: 'SonarCloud'
+            organization: 'marcelgol'
+            scannerMode: 'MSBuild'
+            projectKey: 'marcelgol_tdcsp2020-demo'
+            projectName: 'tdcsp2020-demo'
         - task: DotNetCoreCLI@2
           displayName: Nuget Restore
           inputs:
@@ -38,14 +46,7 @@ stages:
           inputs:
             command: 'build'
             projects: '**/*.sln'
-        - task: SonarCloudPrepare@1
-          displayName: SonarCloud Prepare
-          inputs:
-            SonarCloud: 'SonarCloud'
-            organization: 'marcelgol'
-            scannerMode: 'MSBuild'
-            projectKey: 'marcelgol_tdcsp2020-demo'
-            projectName: 'tdcsp2020-demo'
+        
         - task: DotNetCoreCLI@2
           displayName: Unit Test
           inputs:
