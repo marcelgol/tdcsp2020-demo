@@ -45,7 +45,7 @@ stages:
           displayName: Build
           inputs:
             command: 'build'
-            projects: '**/*.sln'
+            projects: '.'
         
         - task: DotNetCoreCLI@2
           displayName: Unit Test
