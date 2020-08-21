@@ -41,6 +41,8 @@ stages:
             command: 'restore'
             projects: '.'
             feedsToUse: 'select'
+            vstsFeed: 'a0528d68-e458-4a76-aaff-ef7963ece5a3/899c3862-21b6-4211-b598-0817c261d76b'
+            includeNuGetOrg: false
         - task: DotNetCoreCLI@2
           displayName: Build
           inputs:
