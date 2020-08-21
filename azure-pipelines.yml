@@ -38,11 +38,25 @@ stages:
           inputs:
             command: 'build'
             projects: '.'
+        - task: SonarCloudPrepare@1
+          displayName: SonarCloud Prepare
+          inputs:
+            SonarCloud: 'SonarCloud'
+            organization: 'marcelgol'
+            scannerMode: 'MSBuild'
+            projectKey: 'marcelgol_tdcsp2020-demo'
+            projectName: 'tdcsp2020-demo'
         - task: DotNetCoreCLI@2
           displayName: Unit Test
           inputs:
             command: 'test'
             projects: './Temperature.Converter.Tests'
+        - task: SonarCloudAnalyze@1
+          displayName: SonarCloud Analysis
+        - task: SonarCloudPublish@1
+          displayName: SonarCloud Publishing Results
+          inputs:
+            pollingTimeoutSec: '300'
         - task: DotNetCoreCLI@2
           displayName: Publish
           inputs:
