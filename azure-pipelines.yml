@@ -37,7 +37,7 @@ stages:
           displayName: Build
           inputs:
             command: 'build'
-            projects: '.'
+            projects: './*sln'
         - task: SonarCloudPrepare@1
           displayName: SonarCloud Prepare
           inputs:
